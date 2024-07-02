@@ -39,3 +39,7 @@ body {
     margin: 19px 0;
     display: flex;
 }
+
+.sideBar.zinda {
+    left: 0;
+}
