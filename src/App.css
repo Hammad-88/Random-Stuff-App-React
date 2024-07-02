@@ -43,3 +43,11 @@ body {
 .sideBar.zinda {
     left: 0;
 }
+
+.viewMore:hover {
+    color: var(--secondary-text-color);
+}
+
+.viewMore:hover .arrRt {
+    transform: translateX(9px);
+}
