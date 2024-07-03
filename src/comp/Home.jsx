@@ -22,7 +22,7 @@ function Home() {
       ])
 
       setJokes(jResponse.data.jokes || [])
-
+      
     } catch (error) {
 
       if (error.response) {
@@ -97,7 +97,7 @@ function Home() {
 
         <Slider {...sliderSettings}>
           {jokes.map((joke) => (
-            <div key={joke.id} className='px-2'>
+            <div key={joke.id} className=''>
               <div className="card bg-secondary p-4 rounded-lg w-64 h-72 flex flex-col items-center overflow-hidden">
                 <div className='flex'>
                   <p className='text-sm'>category: &nbsp;</p>
