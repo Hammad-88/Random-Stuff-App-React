@@ -61,7 +61,6 @@ function Home() {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
         }
       },
       {
@@ -70,15 +69,14 @@ function Home() {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 2,
-          dots: false,
+          dots: false
         }
       },
       {
         breakpoint: 450,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: false,
+          slidesToScroll: 1
         }
       }
     ]
@@ -102,7 +100,7 @@ function Home() {
 
         <Slider {...sliderSettings}>
           {jokes.map((joke) => (
-            <div key={joke.id} className='px-2 '>
+            <div key={joke.id} className='px-2'>
               <div className="card bg-secondary p-3 rounded-lg w-64 h-72 flex flex-col items-center overflow-hidden">
                 <div className='flex'>
                   <p className='text-sm'>category: &nbsp;</p>
