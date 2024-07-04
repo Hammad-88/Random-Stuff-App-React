@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 function Home() {
 
   const [jokes, setJokes] = useState([]);
+  const [facts,setFacts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const randomCalls = async () => {
@@ -17,12 +18,14 @@ function Home() {
     setLoading(true);
     try {
 
-      const [jResponse] = await axios.all([
-        axios.get('https://v2.jokeapi.dev/joke/Any?amount=10')
+      const [jResponse, jFacts] = await axios.all([
+        axios.get('/joke/Any?amount=10'),
+        axios.get('/quotes?limit=10')
       ])
 
       setJokes(jResponse.data.jokes || [])
-      
+      setFacts(jFacts.data || [])
+
     } catch (error) {
 
       if (error.response) {
@@ -47,16 +50,16 @@ function Home() {
     autoplay: true,
     autoplaySpeed: 3000,
     cssEase: "linear",
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     initialSlide: 0,
     pauseOnHover: true,
     responsive: [
       {
-        breakpoint: 970,
+        breakpoint: 805,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
           dots: true
         }
@@ -64,16 +67,18 @@ function Home() {
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+          dots: false,
         }
       },
       {
         breakpoint: 450,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          dots: false,
         }
       }
     ]
@@ -97,8 +102,8 @@ function Home() {
 
         <Slider {...sliderSettings}>
           {jokes.map((joke) => (
-            <div key={joke.id} className=''>
-              <div className="card bg-secondary p-4 rounded-lg w-64 h-72 flex flex-col items-center overflow-hidden">
+            <div key={joke.id} className='px-2 '>
+              <div className="card bg-secondary p-3 rounded-lg w-64 h-72 flex flex-col items-center overflow-hidden">
                 <div className='flex'>
                   <p className='text-sm'>category: &nbsp;</p>
                   <h4 className='font-semibold'>{joke.category}</h4>
@@ -117,6 +122,33 @@ function Home() {
             </div>
           ))}
         </Slider>
+        
+{/* random facts */}
+<div className='flex justify-between md:mb-5 mt-10'>
+          <h5>Random Facts</h5>
+          <NavLink className='viewMore' to='/facts'>
+            view more
+            <FontAwesomeIcon className='ms-2 arrRt transition-all duration-300' icon={faArrowRight} />
+          </NavLink>
+        </div>
+
+        <Slider {...sliderSettings}>
+          {facts.map((fact, index) => (
+            <div key={index} className='px-2'>
+              <div className="card bg-secondary p-3 rounded-lg w-64 h-72 flex flex-col items-center overflow-hidden">
+                <div className='flex'>
+                  <p className='text-sm'>author: &nbsp;</p>
+                  <h4 className='font-semibold'>{fact.a}</h4>
+                </div>
+                <div className='text-sm md:mt-10 mt-7'>
+                  <p className='font-semibold'>{fact.q}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+
+
 
       </div>
     </>
