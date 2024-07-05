@@ -11,6 +11,14 @@ function Header() {
     document.querySelector('.overlay').classList.toggle('hidden');
   }
 
+  let Dark2nd = () =>{
+    document.documentElement.style.setProperty('--primary-bg', '#273469');
+    document.documentElement.style.setProperty('--secondary-bg', '#1e2749');
+    document.documentElement.style.setProperty('--primary-text-color', '#e0fbfc');
+    document.documentElement.style.setProperty('--secondary-text-color', '#caf0f8');
+
+  }
+
   let lightTheme = () => {
     document.documentElement.style.setProperty('--primary-bg', '#fff');
     document.documentElement.style.setProperty('--secondary-bg', '#ffe5d9');
@@ -24,6 +32,7 @@ function Header() {
     document.documentElement.style.setProperty('--primary-text-color', '#c1c3c5');
     document.documentElement.style.setProperty('--secondary-text-color', '#ffffff');
   }
+  
 
   return (
     <div className='flex lg:justify-center justify-between w-full md:px-8'>
@@ -37,9 +46,10 @@ function Header() {
             Theme <FontAwesomeIcon className='ml-2 mb-1' icon={faSortDown} />
           </MenuButton>
           <MenuList rounded={5} className='bg-secondary w-full text-center px-4 py-2'>
+            <MenuItem onClick={Dark2nd} className='px-3 py-2'>Dark2nd</MenuItem>
             <MenuItem onClick={darkTheme} className='px-3 py-2'>Dark</MenuItem>
             <MenuItem onClick={lightTheme} className='px-3 py-2'>Light</MenuItem>
-            <MenuItem className='px-3 py-2'>Other</MenuItem>
+            
           </MenuList>
         </Menu>
       </div>

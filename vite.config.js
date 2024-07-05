@@ -6,7 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/joke': 'https://v2.jokeapi.dev',
-      '/quotes': 'https://zenquotes.io/api'
+      '/quotes': 'https://zenquotes.io/api',
+      '/facts': ''
     }
   },
   plugins: [react()],
